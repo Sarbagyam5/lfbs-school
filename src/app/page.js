@@ -1,17 +1,43 @@
+"use client";
 import Image from "next/image";
-import SchoolImage from "@/assets/images/school.png";
+import SchoolImage1 from "@/assets/images/school.png";
+import SchoolImage2 from "@/assets/images/school2.jpg";
 import { IoIosArrowDropright } from "react-icons/io";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const images = [SchoolImage1, SchoolImage2];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false); // Fade out the current image
+      setTimeout(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+        setFade(true);
+      }, 500);
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="max-w-[1020px] m-4">
-      <Image
-        src={SchoolImage}
-        height={2617}
-        width={4608}
-        style={{ height: "auto", width: "auto" }}
-        className="md:object-contain"
-      />
+      <div
+        className={`transition-opacity duration-1000 ease-in-out ${
+          fade ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <Image
+          src={images[currentIndex]}
+          height={2617}
+          width={4608}
+          style={{ height: "auto", width: "auto" }}
+          className="md:object-contain "
+        />
+      </div>
       <div className="transition flex flex-col md:flex-row  w-full mt-4">
         <div className="h-32 pt-4 px-4 flex flex-col w-full items-center cursor-pointer bg-blue-500 hover:bg-blue-600">
           <h1 className="font-semibold text-sm">WELCOME</h1>
