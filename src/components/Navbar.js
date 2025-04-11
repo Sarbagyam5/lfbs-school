@@ -9,9 +9,9 @@ import { usePathname } from "next/navigation";
 function Navbar() {
   const [menuClicked, setMenuclicked] = useState(false);
   const pathName = usePathname();
-
+  const absolutePath = pathName.split("/")[1];
   return (
-    pathName != "/login" && (
+    absolutePath != "portal" && (
       <div className="min-h-52 md:min-h-44 pt-2.5 bg-gradient-to-r to-blue-400 via-blue-500 from-blue-600">
         <div className="h-40 md:h-30 flex items-center justify-center  bg-white">
           <div className="items-center flex flex-col md:flex-row w-[1020px] px-2 md:justify-between">
@@ -24,7 +24,7 @@ function Navbar() {
                 width={500}
                 height={500}
                 style={{ height: "auto", width: "auto", maxHeight: "100px" }}
-                className="md:object-contain"
+                className="object-contain"
               />
               <div className="ml-4 flex flex-col justify-center items-center">
                 <h1 className="font-black text-xl sm:text-3xl">
@@ -35,7 +35,7 @@ function Navbar() {
                 </h2>
               </div>
             </div>
-            <div className="flex mt-2 items-center w-full md:w-auto justify-center ">
+            <div className="flex sm:mt-2 items-center w-full md:w-auto justify-center ">
               <input
                 className="border-1 w-full placeholder-gray-700 text-gray-700 focus:outline-none border-blue-400 rounded-l-md pl-2 h-7 hover:border-blue-500 transition"
                 placeholder="Search...."
@@ -44,7 +44,7 @@ function Navbar() {
                 <CiSearch />
               </button>
               <a
-                href="/login"
+                href="/portal/login"
                 className="bg-blue-400 m-4 cursor-pointer text-white  px-4 py-0.5 rounded hover:bg-blue-600 transition"
               >
                 Login

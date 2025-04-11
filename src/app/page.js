@@ -13,7 +13,7 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFade(false); // Fade out the current image
+      setFade(false);
       setTimeout(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
         setFade(true);
@@ -34,8 +34,7 @@ export default function Home() {
           src={images[currentIndex]}
           height={2617}
           width={4608}
-          style={{ height: "auto", width: "auto" }}
-          className="md:object-contain "
+          className="w-full h-auto object-contain md:w-auto"
         />
       </div>
       <div className="transition flex flex-col md:flex-row  w-full mt-4">

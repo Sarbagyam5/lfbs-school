@@ -4,9 +4,10 @@ import React from "react";
 
 function Footer() {
   const pathName = usePathname();
+  const absolutePath = pathName.split("/")[1];
 
   return (
-    pathName != "/login" && (
+    absolutePath != "portal" && (
       <div className="p-10 bg-gradient-to-r to-blue-400 via-blue-500 from-blue-600 justify-center min-h-36 flex-col flex xl:flex-row xl:items-center xl:justify-evenly">
         <div>
           <p className=" text-sm">

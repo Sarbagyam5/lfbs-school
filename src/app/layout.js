@@ -24,7 +24,6 @@ export default function RootLayout({ children }) {
       <body>
         <Navbar />
         <div className="flex flex-col w-auto items-center justify-center  bg-gray-200">
-          {" "}
           {children}
         </div>
       </body>

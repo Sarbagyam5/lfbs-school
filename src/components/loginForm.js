@@ -31,11 +31,11 @@ function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit(submitForm)}
-      className="w-full flex flex-col p-6 items-center md:p-12"
+      className="w-full flex flex-col  items-center p-4 sm:px-6"
     >
       <div className="flex flex-col w-full  items-center">
-        <Image width={100} ref={"logo"} src={schoolLogo} />
-        <h1 className="text-3xl mb-10 font-semibold text-blue-800">
+        <Image width={80} ref={"logo"} src={schoolLogo} />
+        <h1 className="text-2xl mb-8 font-semibold text-blue-800">
           LFBS Login Portal
         </h1>
       </div>
@@ -45,13 +45,13 @@ function LoginForm() {
       <div className="relative w-full">
         <label
           htmlFor="username"
-          className="text-blue-600 sm:text-xl font-medium"
+          className="text-blue-600 sm:text-md font-medium"
         >
           Username<span className="text-red-500">*</span>
         </label>
         <input
           type="text"
-          className={`border-b  w-full text-xl "border-zinc-400" text-gray-800 py-1 focus:outline-none  focus:border-b-2 ${
+          className={`border-b  w-full text-md "border-zinc-400" text-gray-800  focus:outline-none  focus:border-b-2 ${
             !emptyUsername
               ? "border-b-green-600 border-b-2 focus:border-b-green-600"
               : "border-zinc-400 focus:border-b-blue-600"
@@ -60,22 +60,22 @@ function LoginForm() {
             required: "Username is required",
           })}
         ></input>
-        <FaUser className="absolute text-blue-800 sm:text-2xl top-8 right-2" />
+        <FaUser className="absolute text-blue-800 text-xl top-5 right-2" />
         <p className="text-red-600"> {errors.username?.message}</p>
       </div>
 
       {/* ************************************Password***********************************************  */}
 
-      <div className="relative mt-6 w-full">
+      <div className="relative mt-2 w-full">
         <label
           htmlFor="password"
-          className="text-blue-600 sm:text-xl font-medium"
+          className="text-blue-600 sm:text-md font-medium"
         >
           Password<span className="text-red-500">*</span>
         </label>
         <input
           type={passwordVisible ? "text" : "password"}
-          className={`border-b  w-full text-xl "border-zinc-400" text-gray-800 py-1 focus:outline-none  focus:border-b-2 ${
+          className={`border-b  w-full text-md "border-zinc-400" text-gray-800 focus:outline-none  focus:border-b-2 ${
             !emptyPassword
               ? "border-b-green-600 border-b-2 focus:border-b-green-600"
               : "border-zinc-400 focus:border-b-blue-600"
@@ -85,16 +85,16 @@ function LoginForm() {
           })}
         ></input>
         {emptyPassword ? (
-          <MdPassword className="absolute text-blue-800 sm:text-2xl top-8 right-2" />
+          <MdPassword className="absolute text-blue-800 text-xl top-6 right-2" />
         ) : !passwordVisible ? (
           <FaEye
             onClick={() => setPasswordVisible(!passwordVisible)}
-            className="absolute text-blue-800 sm:text-2xl top-8 right-2"
+            className="absolute text-blue-800 text-xl top-6 right-2"
           />
         ) : (
           <FaEyeSlash
             onClick={() => setPasswordVisible(!passwordVisible)}
-            className="absolute text-blue-800 sm:text-2xl top-8 right-2"
+            className="absolute text-blue-800 text-xl top-6 right-2"
           />
         )}
 
@@ -103,13 +103,13 @@ function LoginForm() {
 
       {/* ************************************Role***********************************************  */}
 
-      <div className="mt-6 w-full">
-        <label htmlFor="role" className="text-blue-600 sm:text-xl font-medium">
+      <div className="mt-2 w-full">
+        <label htmlFor="role" className="text-blue-600 sm:text-md font-medium">
           Role
         </label>
         <select
           name="roles"
-          className=" border-b-2 mt-2 border-green-600 w-full sm:text-xl text-gray-800 py-1 focus:outline-none focus:border-b-green-600 focus:border-b-2 cursor-pointer "
+          className=" border-b-2 mt-2 border-green-600 w-full sm:text-md text-gray-800  focus:outline-none focus:border-b-green-600 focus:border-b-2 cursor-pointer "
           {...register("role")}
         >
           <option className="" value="admin">
@@ -124,7 +124,7 @@ function LoginForm() {
 
       <button
         type="submit"
-        className="mt-8 w-full bg-gradient-to-r to-blue-400 via-blue-600 from-blue-400 p-2 rounded cursor-pointer sm:font-semibold  sm:text-lg"
+        className="mt-8 w-full bg-gradient-to-r to-blue-400 via-blue-600 from-blue-400 p-2 rounded cursor-pointer sm:font-semibold "
       >
         Submit
       </button>
