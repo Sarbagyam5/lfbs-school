@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { useForm, useWatch } from "react-hook-form";
 import { MdPassword } from "react-icons/md";
@@ -8,8 +8,15 @@ import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { loginReq } from "@/utils/axios";
 
 function LoginForm() {
+  const router = useRouter();
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [loading, setLoading] = useState();
+  const [loginError, setLoginError] = useState();
+
   const {
     register,
     handleSubmit,
@@ -17,16 +24,23 @@ function LoginForm() {
     formState: { errors },
   } = useForm();
 
-  function submitForm(data) {
-    console.log(data);
-  }
-
-  const [passwordVisible, setPasswordVisible] = useState(false);
-
   const passwordValue = watch("password");
   const usernameValue = watch("username");
   const emptyUsername = !usernameValue || usernameValue?.trim() === "";
   const emptyPassword = !passwordValue || passwordValue?.trim() === "";
+
+  async function submitForm(data) {
+    try {
+      setLoading(true);
+      const user = await loginReq(data);
+      router.push("/portal/dashboard");
+      sessionStorage.setItem("username", user.username);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setLoginError(true);
+    }
+  }
 
   return (
     <form
@@ -115,7 +129,7 @@ function LoginForm() {
           <option className="" value="admin">
             Admin
           </option>
-          <option value="teacher">Teacher/Staff</option>
+          <option value="staff">Teacher/Staff</option>
           <option value="student">Student/Parent</option>
         </select>
       </div>
@@ -124,10 +138,19 @@ function LoginForm() {
 
       <button
         type="submit"
-        className="mt-8 w-full bg-gradient-to-r to-blue-400 via-blue-600 from-blue-400 p-2 rounded cursor-pointer sm:font-semibold "
+        className={`mt-8 w-full flex justify-center bg-gradient-to-r to-blue-400 via-blue-600 from-blue-400 p-2 rounded cursor-pointer sm:font-semibold ${
+          loading && "opacity-50 pointer-events-none"
+        }`}
       >
-        Submit
+        {loading ? (
+          <div className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+        ) : (
+          "Submit"
+        )}
       </button>
+      {loginError && (
+        <p className="text-red-600">Invalid Username or Password</p>
+      )}
     </form>
   );
 }

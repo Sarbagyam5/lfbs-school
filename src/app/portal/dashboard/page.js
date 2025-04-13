@@ -1,7 +1,11 @@
 import React from "react";
 
-function dashboard() {
-  return <div className="text-black">dashboard</div>;
+function Dashboard() {
+  return (
+    <div className="text-black flex h-svh w-full justify-center items-center">
+      Dashboard
+    </div>
+  );
 }
 
-export default dashboard;
+export default Dashboard;
