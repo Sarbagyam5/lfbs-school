@@ -12,7 +12,6 @@ function PortalLayout({ children }) {
   const pathName = usePathname();
   const router = useRouter();
 
-  const [authChecked, setAuthChecked] = useState(false);
   const [sidebarVisible, setSidebarVisible] = useState(false);
   const [user, setUser] = useState();
 
@@ -22,23 +21,16 @@ function PortalLayout({ children }) {
     const checkAuth = async () => {
       if (subPathName !== "login") {
         try {
-          setAuthChecked(false);
           const user = await authUser();
           setUser(user);
-          setAuthChecked(true);
         } catch (error) {
           router.push("/portal/login");
         }
       } else {
         try {
-          setAuthChecked(false);
-          const user = await authUser();
-          setAuthChecked(true);
-
+          await authUser();
           router.push("/portal/dashboard");
-        } catch (error) {
-          setAuthChecked(true);
-        }
+        } catch (error) {}
       }
     };
     checkAuth();
@@ -50,15 +42,6 @@ function PortalLayout({ children }) {
     if (subPathName === "settings") return "Settings";
     return "Portal";
   };
-
-  if (!authChecked) {
-    return (
-      <div className="flex h-svh w-full justify-center items-center text-center p-10 text-indigo-600">
-        Checking authentication
-        <span className="typing-dots" />
-      </div>
-    );
-  }
 
   return subPathName !== "login" ? (
     <>

@@ -36,7 +36,7 @@ function LoginForm() {
       setLoading(true);
 
       const user = await loginReq(data);
-      toast.success("Login Successfull but wait a minute");
+      toast.success("Login Successfull");
 
       sessionStorage.setItem("username", user.username);
       setLoading(false);
