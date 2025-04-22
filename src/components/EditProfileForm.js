@@ -9,10 +9,6 @@ import { FiUpload } from "react-icons/fi";
 
 function EditProfileForm({ user, id }) {
   const router = useRouter();
-
-  if (!user) {
-    return <div>Loading...</div>;
-  }
   const [name, setName] = useState(user?.name || "");
   const [email, setEmail] = useState(user?.email || "");
   const [phone, setPhone] = useState(user?.phone || "");
@@ -21,8 +17,11 @@ function EditProfileForm({ user, id }) {
   const [image, setImage] = useState(null);
   const [selectedImageUrl, setSelectedImageUrl] = useState();
   const [loading, setLoading] = useState(false);
-
   const [selectedFileName, setSelectedFileName] = useState("");
+
+  if (!user) {
+    return <div>Loading...</div>;
+  }
 
   const handleImageChange = async (e) => {
     const file = e.target?.files[0];

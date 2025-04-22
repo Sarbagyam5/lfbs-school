@@ -29,7 +29,7 @@ function Navbar() {
               />
               <div className="ml-4 flex flex-col justify-center items-center">
                 <h1 className="font-black text-xl sm:text-3xl">
-                  LITTLE FLOWERS'
+                  LITTLE FLOWERS&apos;
                 </h1>
                 <h2 className="font-semibold  text-zinc-700">
                   BOARDING SCHOOL

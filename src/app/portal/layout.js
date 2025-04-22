@@ -8,7 +8,7 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { authUser } from "@/utils/axios/axios";
 
-function portalLayout({ children }) {
+function PortalLayout({ children }) {
   const pathName = usePathname();
   const router = useRouter();
 
@@ -98,4 +98,4 @@ function portalLayout({ children }) {
   );
 }
 
-export default portalLayout;
+export default PortalLayout;

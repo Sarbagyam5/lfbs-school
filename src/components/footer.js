@@ -11,7 +11,7 @@ function Footer() {
       <div className="p-10 bg-gradient-to-r to-blue-400 via-blue-500 from-blue-600 justify-center min-h-36 flex-col flex xl:flex-row xl:items-center xl:justify-evenly">
         <div>
           <p className=" text-sm">
-            © 2055 Little Flowers' Boarding School ·{" "}
+            © 2055 Little Flowers&apos; Boarding School ·{" "}
             <a href="#" className="text-yellow-200 px-1 ">
               Legal Information
             </a>

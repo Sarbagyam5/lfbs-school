@@ -94,7 +94,7 @@ function Sidebar() {
       {/* Heading of SideBar */}
       <div className="flex p-4 pt-7 bg-blue-500 sticky top-0 border-b border-b-gray-400 shadow-xl ">
         <h2 className="text-gray-300 w-3/4 flex-col flex">
-          <span className="font-black text-xl">Little Flowers'</span>
+          <span className="font-black text-xl">Little Flowers&apos;</span>
           <span className="font-semibold">Boarding School</span>
         </h2>
         <div className="flex w-1/4 items-center">

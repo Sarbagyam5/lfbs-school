@@ -13,7 +13,7 @@ function page() {
           <LoginForm />
         </div>
         <div className="hidden md:display w-full md:flex bg-[#fcfbf8] flex-row items-center justify-center">
-          <Image src={portalImage} height={500}></Image>
+          <Image src={portalImage} height={500} alt="login"></Image>
         </div>
       </div>
     </div>
