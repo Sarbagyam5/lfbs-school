@@ -13,6 +13,9 @@ import Link from "next/link";
 import { portal } from "@/constant/routes";
 import { IoMdArrowDropright } from "react-icons/io";
 import { GoDotFill } from "react-icons/go";
+import { HiOutlineAcademicCap } from "react-icons/hi";
+import { FaBookOpen } from "react-icons/fa";
+import { SiGoogleclassroom } from "react-icons/si";
 
 function Sidebar() {
   const pathName = usePathname();
@@ -34,6 +37,21 @@ function Sidebar() {
       path: "dashboard",
     },
     {
+      icon: <HiOutlineAcademicCap />,
+      label: "Academic Year",
+      path: "academicYear",
+    },
+    {
+      icon: <FaBookOpen />,
+      label: "Subject",
+      path: "subject",
+    },
+    {
+      icon: <SiGoogleclassroom />,
+      label: "Classroom",
+      path: "classroom",
+    },
+    {
       icon: <PiStudentBold />,
       label: "Student",
       path: "student",
@@ -51,7 +69,7 @@ function Sidebar() {
       subRoutes: [
         { label: "View Staffs", path: "view" },
         { label: "Add Staff", path: "add" },
-        { label: "Add Staff", path: "add" },
+        { label: "Assign Subject", path: "assignSubject" },
       ],
     },
     {
@@ -82,6 +100,7 @@ function Sidebar() {
         <div className="flex w-1/4 items-center">
           <Image
             src={schoolLogo}
+            alt="school logo"
             width={500}
             height={500}
             style={{ height: "auto", width: "auto", maxHeight: "100px" }}

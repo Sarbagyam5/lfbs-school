@@ -28,8 +28,8 @@ export default function RootLayout({ children }) {
         <div className="flex flex-col w-auto items-center justify-center  bg-gray-200">
           {children}
         </div>
+        <Footer />
       </body>
-      <Footer />
     </html>
   );
 }

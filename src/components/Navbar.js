@@ -20,6 +20,7 @@ function Navbar() {
               className="text-zinc-800 cursor-pointer flex items-center justify-center w-full md:w-auto "
             >
               <Image
+                alt="school Logo"
                 src={schoolLogo}
                 width={500}
                 height={500}

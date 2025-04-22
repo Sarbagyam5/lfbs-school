@@ -1,4 +1,4 @@
-import loginReq from "@/utils/axios";
+import loginReq from "@/utils/axios/axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const loginUser = createAsyncThunk(

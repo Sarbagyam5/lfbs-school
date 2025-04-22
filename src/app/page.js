@@ -35,6 +35,7 @@ export default function Home() {
           height={2617}
           width={4608}
           className="w-full h-auto object-contain md:w-auto"
+          alt="school image"
         />
       </div>
       <div className="transition flex flex-col md:flex-row  w-full mt-4">

@@ -3,6 +3,7 @@ import LoginForm from "@/components/loginForm";
 import Image from "next/image";
 import React from "react";
 import portalImage from "@/assets/images/LoginPortal2.png";
+import { Toaster } from "react-hot-toast";
 
 function page() {
   return (
