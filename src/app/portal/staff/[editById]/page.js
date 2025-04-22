@@ -47,7 +47,7 @@ function EditStaff({ params }) {
       }
     };
     fetchUser();
-  }, []);
+  }, [editById, reset]);
 
   const {
     register,
@@ -178,6 +178,7 @@ function EditStaff({ params }) {
                   height={180}
                   width={180}
                   className="rounded-full"
+                  alt="profilePic"
                 ></Image>
               </div>
             ) : (

@@ -55,7 +55,7 @@ function LoginForm() {
         className="w-full flex flex-col  items-center p-4 sm:px-6"
       >
         <div className="flex flex-col w-full  items-center">
-          <Image width={80} ref={"logoRef"} src={schoolLogo} alt="logo" />
+          <Image width={80} ref={logoRef} src={schoolLogo} alt="logo" />
           <h1 className="text-2xl mb-8 font-semibold text-blue-800">
             LFBS Login Portal
           </h1>

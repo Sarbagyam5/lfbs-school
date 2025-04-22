@@ -124,6 +124,7 @@ function StaffAdd() {
             {selectedImage ? (
               <div>
                 <Image
+                  alt="profileImage"
                   src={selectedImageUrl}
                   height={180}
                   width={180}
