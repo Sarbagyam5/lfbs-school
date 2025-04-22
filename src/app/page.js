@@ -21,7 +21,7 @@ export default function Home() {
     }, 6000);
 
     return () => clearInterval(interval);
-  }, []); // No need to depend on `images` anymore
+  }, [images.length]); // No need to depend on `images` anymore
 
   return (
     <div className="max-w-[1020px] m-4">
@@ -46,7 +46,7 @@ export default function Home() {
         </div>
         <div className="transition h-32 pt-4 px-4 flex flex-col w-full items-center cursor-pointer bg-orange-400 hover:bg-orange-500">
           <h1 className="font-semibold text-sm">LATEST NEWS</h1>
-          <p className="text-xs italic">What's happening at School</p>
+          <p className="text-xs italic">What&aposs happening at School</p>
           <IoIosArrowDropright className="text-3xl mt-4" />
         </div>
         <div className="transition h-32 pt-4 px-4 flex flex-col w-full items-center cursor-pointer bg-purple-600 hover:bg-purple-700">
