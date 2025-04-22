@@ -15,6 +15,13 @@ import { useRouter } from "next/navigation";
 
 function EditStaff({ params }) {
   const { editById } = React.use(params);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+    watch,
+  } = useForm();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -48,14 +55,6 @@ function EditStaff({ params }) {
     };
     fetchUser();
   }, [editById, reset]);
-
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-    reset,
-    watch,
-  } = useForm();
 
   const watchedFields = watch();
   const router = useRouter();
@@ -258,8 +257,7 @@ function EditStaff({ params }) {
               e.preventDefault();
               router.push("/portal/staff/view");
             }}
-            className="px-6 rounded p-1 bg-red-600 text-white hover:bg- red-500 cursor-pointer ml-2 hidden lg:block"
-          >
+            className="px-6 rounded p-1 bg-red-600 text-white hover:bg- red-500 cursor-pointer ml-2 hidden lg:block">
             Cancel
           </button>
         </div>
