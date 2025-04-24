@@ -1,7 +1,8 @@
 import { addAcademicYears, addSubjects } from "@/utils/axios/axios";
+import { addClassroom } from "@/utils/axios/classroom";
 import { getAllTeachers } from "@/utils/axios/teacher";
 import React, { useEffect, useState } from "react";
-import { useForm, useFieldArray } from "react-hook-form"; // Using useFieldArray for dynamic form arrays
+import { useForm, useFieldArray } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { AiFillSave } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
@@ -19,7 +20,7 @@ function AddClassroomModal({ academicYear, onClose }) {
     },
   });
   const [teachers, setTeachers] = useState();
-
+  const [loading, setLoading] = useState();
   useEffect(() => {
     const fetchTeacher = async () => {
       try {
@@ -38,24 +39,38 @@ function AddClassroomModal({ academicYear, onClose }) {
   });
 
   const submitForm = async (data) => {
-    const classRoomWithAcademicYear = data.classroom.map((classroom) => ({
+    const classroomWithAcademicYear = data.classroom.map((classroom) => ({
       ...classroom,
       academicYear: academicYear.value,
     }));
-    console.log(classRoomWithAcademicYear);
-    // try {
-    //   await addSubjects(data.subjects);
-    //   window.location.reload();
-    //   onClose();
-    // } catch (error) {
-    //   const message =
-    //     error.response?.data?.message ||
-    //     "Failed to save subjects. Please try again.";
-    //   setError("root", {
-    //     type: "server",
-    //     message,
-    //   });
-    // }
+    setLoading(true);
+    let hasError = false;
+    const successfulIndexes = [];
+
+    for (let i = 0; i < classroomWithAcademicYear.length; i++) {
+      try {
+        const response = await addClassroom(classroomWithAcademicYear[i]);
+        toast.success(`Class ${response.name} added successfully`);
+        successfulIndexes.push(i);
+      } catch (error) {
+        hasError = true;
+        const message =
+          error.response?.data?.message ||
+          "Failed to save classroom. Please try again.";
+        setError("root", {
+          type: "server",
+          message,
+        });
+      }
+    }
+
+    successfulIndexes.sort((a, b) => b - a).forEach((index) => remove(index));
+
+    if (!hasError) {
+      onClose();
+      window.location.reload();
+    }
+    setLoading(false);
   };
 
   return (
@@ -156,7 +171,11 @@ function AddClassroomModal({ academicYear, onClose }) {
           <div className="flex justify-between mt-6">
             <button
               type="submit"
-              className="bg-blue-600 text-white px-6 py-2 rounded cursor-pointer hover:bg-blue-500"
+              className={` text-white px-6 py-2 rounded cursor-pointer hover:bg-blue-500 ${
+                loading
+                  ? "bg-blue-400 opacity-50 cursor-not-allowed pointer-events-none"
+                  : "bg-blue-600"
+              }`}
             >
               <AiFillSave className="inline-block mr-2 " />
               Save
